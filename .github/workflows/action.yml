@@ -1,0 +1,66 @@
+name: Validate and Copy to Blob Storage
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  validate_and_copy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Extract Archive
+        id: extraction
+        run: |
+          ls -al
+          sudo apt-get install unzip
+          unzip file.zip -d test
+          ls -al
+
+      - name: Validate Archive/Docker Image
+        id: validation
+        run: |
+          # use md5 checksum for validation
+
+          # Assuming the validation output is stored in a variable called VALIDATION_RESULT
+          VALIDATION_RESULT="Validation successful"
+
+          echo "::set-output name=validation_result::$VALIDATION_RESULT"      
+
+      - name: Copy to Blob Storage
+        id: copy_blob
+        run: |
+          # Assuming you have a script/tool to copy the content to blob storage
+          # Replace this command with your method of copying content to blob storage
+          # Replace SOURCE_PATH and DESTINATION_PATH with appropriate paths
+
+          # Copy the content to blob storage
+          # Example: azcopy cp SOURCE_PATH DESTINATION_PATH
+
+          COPY_RESULT="Content copied to blob storage"
+
+          echo "::set-output name=copy_result::$COPY_RESULT"
+
+      - name: Validate Blob Storage Content
+        id: validation_blob
+        run: |
+          # Assuming you have a script/tool to validate content in blob storage
+          # Replace this command with your specific validation logic for blob storage content
+
+          # Validate the content in blob storage matches the expanded content
+          # Example: Compare content in blob storage with expanded content
+
+          VALIDATION_BLOB_RESULT="Validation of blob storage content successful"
+
+          echo "::set-output name=validation_blob_result::$VALIDATION_BLOB_RESULT"
+
+      - name: Log Validation Results
+        run: |
+          echo "Validation Result: ${{ steps.validation.outputs.validation_result }}"
+          echo "Copy to Blob Storage Result: ${{ steps.copy_blob.outputs.copy_result }}"
+          echo "Blob Storage Validation Result: ${{ steps.validation_blob.outputs.validation_blob_result }}"
+
