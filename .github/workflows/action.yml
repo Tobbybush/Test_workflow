@@ -3,14 +3,7 @@ name: Validate and Copy to Blob Storage
 on:
   push:
     branches:
-      - main
-      
-env:
-  ZIP_FILE_NAME: file.zip
-  EXTRACT_FOLDER_NAME: Folder
-  STORAGE_ACCOUNT_NAME: reusestacc01
-  CONTAINER_NAME: rscontainer
-  
+      - dev-dee
 
 jobs:
   validate_and_copy:
@@ -24,7 +17,7 @@ jobs:
         id: extraction
         run: |
           ls -al
-          unzip $ZIP_FILE_NAME -d $EXTRACT_FOLDER_NAME
+          unzip file.zip -d test
           ls -al
 
       - name: Validate Archive/Docker Image
@@ -43,7 +36,7 @@ jobs:
 
           az login --service-principal -u "f0d22f1c-d2f2-4870-aba1-83f0f86495ab" -p "odU8Q~l5SqnWdcCTW2S_qCS5kt-5StE-iWfEzc3o" --tenant "2f64943b-5ec5-41e9-9829-934b5391ef50" 
 
-          az storage blob upload --account-key BhhJKhV7FCxRudThA9oFtiv+UpvQs7XG6bzKrZR6rZyfNf0I3ja2wqNnqEovyilvu4Oc1SKHK2pK+AStKb0Rdw== --account-name $STORAGE_ACCOUNT_NAME --container-name CONTAINER_NAME --name test/new1.txt --file test/new1.txt
+          az storage blob upload --account-key BhhJKhV7FCxRudThA9oFtiv+UpvQs7XG6bzKrZR6rZyfNf0I3ja2wqNnqEovyilvu4Oc1SKHK2pK+AStKb0Rdw== --account-name reusestacc01 --container-name rscontainer --name test/new1.txt --file test/new1.txt
 
           COPY_RESULT="Content copied to blob storage"
 
@@ -52,6 +45,9 @@ jobs:
       - name: Validate Blob Storage Content
         id: validation_blob
         run: |
+          # Assuming you have a script/tool to validate content in blob storage
+          # Replace this command with your specific validation logic for blob storage content
+
           # Validate the content in blob storage matches the expanded content
           # Example: Compare content in blob storage with expanded content
 
@@ -64,4 +60,3 @@ jobs:
           echo "Validation Result: ${{ steps.validation.outputs.validation_result }}"
           echo "Copy to Blob Storage Result: ${{ steps.copy_blob.outputs.copy_result }}"
           echo "Blob Storage Validation Result: ${{ steps.validation_blob.outputs.validation_blob_result }}"
-          
