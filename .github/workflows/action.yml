@@ -34,10 +34,10 @@ jobs:
         id: copy_blob
         run: |
 
-          az login --service-principal --username e40ffbf1-92f8-48e0-b8ea-97f238fda1d2 --password ort8Q~IxqE2s0XXtOUXOKu1F80I2ttTWH3KxLb44 --tenant 2f64943b-5ec5-41e9-9829-934b5391ef50
+          az login --service-principal -u "f0d22f1c-d2f2-4870-aba1-83f0f86495ab" -p "odU8Q~l5SqnWdcCTW2S_qCS5kt-5StE-iWfEzc3o" --tenant "2f64943b-5ec5-41e9-9829-934b5391ef50" 
+
 
           az storage blob upload --account-name reusestacc01 --container-name rscontainer --name test/new1.txt --file test/new1.txt
-
 
           COPY_RESULT="Content copied to blob storage"
 
