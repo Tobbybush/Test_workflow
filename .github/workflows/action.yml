@@ -17,7 +17,6 @@ jobs:
         id: extraction
         run: |
           ls -al
-          sudo apt-get install unzip
           unzip file.zip -d test
           ls -al
 
@@ -34,12 +33,11 @@ jobs:
       - name: Copy to Blob Storage
         id: copy_blob
         run: |
-          # Assuming you have a script/tool to copy the content to blob storage
-          # Replace this command with your method of copying content to blob storage
-          # Replace SOURCE_PATH and DESTINATION_PATH with appropriate paths
 
-          # Copy the content to blob storage
-          # Example: azcopy cp SOURCE_PATH DESTINATION_PATH
+          az login --service-principal --username e40ffbf1-92f8-48e0-b8ea-97f238fda1d2 --password ort8Q~IxqE2s0XXtOUXOKu1F80I2ttTWH3KxLb44 --tenant 2f64943b-5ec5-41e9-9829-934b5391ef50
+
+          az storage blob upload --account-name reusestacc01 --container-name rscontainer --name test/new1.txt --file test/new1.txt
+
 
           COPY_RESULT="Content copied to blob storage"
 
