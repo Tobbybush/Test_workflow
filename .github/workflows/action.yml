@@ -36,7 +36,7 @@ jobs:
 
           az login --service-principal -u "f0d22f1c-d2f2-4870-aba1-83f0f86495ab" -p "odU8Q~l5SqnWdcCTW2S_qCS5kt-5StE-iWfEzc3o" --tenant "2f64943b-5ec5-41e9-9829-934b5391ef50" 
 
-          az storage blob upload --account-key BhhJKhV7FCxRudThA9oFtiv+UpvQs7XG6bzKrZR6rZyfNf0I3ja2wqNnqEovyilvu4Oc1SKHK2pK+AStKb0Rdw== --account-name reusestacc01 --container-name rscontainer --name test/new1.txt --file /test/new1.txt
+          az storage blob upload --account-key BhhJKhV7FCxRudThA9oFtiv+UpvQs7XG6bzKrZR6rZyfNf0I3ja2wqNnqEovyilvu4Oc1SKHK2pK+AStKb0Rdw== --account-name reusestacc01 --container-name rscontainer --name test/new1.txt --file test/new1.txt
 
           COPY_RESULT="Content copied to blob storage"
 
@@ -60,4 +60,3 @@ jobs:
           echo "Validation Result: ${{ steps.validation.outputs.validation_result }}"
           echo "Copy to Blob Storage Result: ${{ steps.copy_blob.outputs.copy_result }}"
           echo "Blob Storage Validation Result: ${{ steps.validation_blob.outputs.validation_blob_result }}"
-
