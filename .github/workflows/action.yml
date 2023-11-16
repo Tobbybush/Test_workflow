@@ -1,9 +1,12 @@
 name: Validate and Copy to Blob Storage
 
 on:
-  push:
+  pull_request:
     branches:
       - main
+  # push:
+  #   branches:
+  #     - main
       
 env:
   ZIP_FILE_NAME: file.zip
