@@ -50,7 +50,7 @@ jobs:
           az login --service-principal -u "f0d22f1c-d2f2-4870-aba1-83f0f86495ab" -p "odU8Q~l5SqnWdcCTW2S_qCS5kt-5StE-iWfEzc3o" --tenant "2f64943b-5ec5-41e9-9829-934b5391ef50" 
 
           # az storage blob upload-batch --account-key BhhJKhV7FCxRudThA9oFtiv+UpvQs7XG6bzKrZR6rZyfNf0I3ja2wqNnqEovyilvu4Oc1SKHK2pK+AStKb0Rdw== --account-name $STORAGE_ACCOUNT_NAME --container-name $CONTAINER_NAME --source test/ --destination test  --overwrite
-          az storage blob upload-batch --account-key $ACCOUNT_KEY --account-name $ACCOUNT_NAME -d $CONTAINER_NAME/$EXTRACT_FOLDER_NAME  --source $EXTRACT_FOLDER_NAME
+          az storage blob upload-batch --account-key $ACCOUNT_KEY --account-name $ACCOUNT_NAME -d $CONTAINER_NAME/$EXTRACT_FOLDER_NAME  --source $EXTRACT_FOLDER_NAME --overwrite
 
           COPY_RESULT="Content copied to blob storage"
 
