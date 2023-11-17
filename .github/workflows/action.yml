@@ -15,7 +15,7 @@ env:
   CONTAINER_NAME: rscontainer
   #SECRETS FOR THE BELOW
   STORAGE_ACCOUNT_KEY: BhhJKhV7FCxRudThA9oFtiv+UpvQs7XG6bzKrZR6rZyfNf0I3ja2wqNnqEovyilvu4Oc1SKHK2pK+AStKb0Rdw==
-  ACCOUNT_NAME: reusestacc01
+
   
 
 jobs:
