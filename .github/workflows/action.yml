@@ -72,3 +72,4 @@ jobs:
           echo "Copy to Blob Storage Result: ${{ steps.copy_blob.outputs.copy_result }}"
           echo "Blob Storage Validation Result: ${{ steps.validation_blob.outputs.validation_blob_result }}"
           
+          
